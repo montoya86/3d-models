@@ -1,8 +1,8 @@
 $fn = 50;
 
-sizeX = 95;
-sizeY = 50;
-errorCorrectLenght=24;
+sizeX = 93;
+sizeY = 57;
+errorCorrectLenght=18.5;
 errorCorrectAngle=0;
 
 
