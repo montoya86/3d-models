@@ -9,35 +9,60 @@ phoneScreenSize = [80,48,50];
 phoneScreenPosition = [10,1];
 unlockPhoneSize =[4,50];//r,h
 unlockScreenButtonPosition = [95,25]; //x,y
-lateralUnlockSize=[4,50];//r,h
+lateralUnlockSize=[3,50];//r,h
 lateralUnlockPosition=[30,49.5];
+
+volumeButtonsPosition=[20,-1];//
+volumeButtonsSize = 30;
 
 //DASH VARIABLES
 
-dashSize = [110,60,20];
-dashHull = [150,50];
+dashSize = [phoneSize[0]+10,phoneSize[1]+10,phoneSize[2]+5];
+dashHull = [200,30];
 
 
 fullPiece();
 
 
 
+color("RED"){
+    translate([2.5, -80,0]) scale(0.99)dashBackCover();
+}
+
+
 module fullPiece(){
     difference() {
-        dash();
-        translate([dashSize[0]/2 - phoneSize[0]/2,dashSize[1]/2 - phoneSize[1]/2,dashSize[2]/2 - phoneSize[2]/2]) phone();
+        group(){
+            dash();
+            translate([0,0,0.1])backAppendixBackCover();            
+        }
+
+        translate([dashSize[0]/2 - phoneSize[0]/2,dashSize[1]/2 - phoneSize[1]/2,0]) phone();
+    }
+
+}
+
+module dashBackCover(){
+    hull(){
+        cube([dashSize[0]-5,dashSize[1]-2.5,0.1]);
+        translate([2.5,0,-5]) cube([dashSize[0]-10,dashSize[1]-5,0.1]);
     }
 }
 
-
+module backAppendixBackCover(){
+    difference() {
+        translate([0,0,-5]) cube([dashSize[0],dashSize[1],5]);
+        translate([2.5,0,0]) dashBackCover();
+    }
+}
 
 module dash() {
     //roundedcube(size=dashSize,center=false, radius=1);
-    cube(size=dashSize,center=false, radius=1);
+    cube(size=dashSize,center=false);
 }
 
 module phone() {
-            cube([phoneSize[0]+50,phoneSize[1],phoneSize[2]]);
+            cube([phoneSize[0],phoneSize[1],phoneSize[2]]);
     
             color("RED"){
                 translate([phoneScreenPosition[0],phoneScreenPosition[1],phoneSize[2]]) {
@@ -55,6 +80,13 @@ module phone() {
             color("BLUE"){
                 
                 translate([lateralUnlockPosition[0],lateralUnlockPosition[1],lateralUnlockSize[0]/2]) rotate([0,90,90]) cylinder(lateralUnlockSize[1],lateralUnlockSize[0],lateralUnlockSize[0]+20,center=false);
+            }
+            
+            color("ORANGE"){
+                translate([volumeButtonsPosition[0],volumeButtonsPosition[1],0]) {
+                    cube([volumeButtonsSize,3,phoneSize[2]]);
+                    translate([0,-10,phoneSize[2]/4]) cube([volumeButtonsSize,13,phoneSize[2]/2]);
+                }
             }
             
     
