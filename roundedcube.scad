@@ -1,3 +1,5 @@
+// This file is not mine, I took it from:
+// https://gist.githubusercontent.com/groovenectar/92174cb1c98c1089347e/raw/c0774c7550a9105d81b7442cbfaf16a300fd48e8/roundedcube.scad
 // More information: https://danielupshaw.com/openscad-rounded-corners/
 
 // Set to 0.01 for higher definition curves (renders slower)
